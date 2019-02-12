@@ -62,7 +62,9 @@ function initializeStateArray() {
 function changeStateArray(context, i, j) {
     stateArray[i][j] = 1;
     context.fillStyle = 'black';
-    context.fillRect(j + 10 * j, i + 10 * i, 10, 10);
+    setTimeout(() => {
+        context.fillRect(j + 10 * j, i + 10 * i, 10, 10)
+    }, 1000)
 }
 
 function nextGeneration() {

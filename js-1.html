@@ -41,8 +41,12 @@
   draw_title(context);
 
   initializeStateArray();
+
   changeStateArray(context, 0, 19);
-  nextGeneration();
+  setTimeout(() => {
+    nextGeneration();
+  }, 2000)
+
 
   // Fill the grid using the Wolfram 150 CELLA rule
   // cella_150(context, 190, 0, 'black');
