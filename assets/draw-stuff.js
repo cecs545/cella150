@@ -57,12 +57,17 @@ function initializeStateArray() {
             stateArray[i][j] = 0;
         }
     }
+    stateArray[0][199] = 1;
+    // stateArray[1][j=199] = 1;
+    context.fillStyle = 'black';
+    context.fillRect(199 - 10, 1, 10, 10);
+
 }
 
 function changeStateArray(context, i, j) {
     stateArray[i][j] = 1;
     context.fillStyle = 'black';
-    context.fillRect(j - 10, i, 10, 10);
+    context.fillRect(j - 10, i+9, 10, 10);
 }
 
 function nextGeneration() {
@@ -72,31 +77,39 @@ function nextGeneration() {
 }
 
 function generate(i) {
-    for (j = 1; j < 399; j++) {
-        let a = stateArray[i - 1][j - 1], b = stateArray[i - 1][j], c = stateArray[i - 1][j + 1];
-        if (a == 0 && b == 1 && c == 0) {
-            context.fillRect(j - 10, i + 9, 10, 10);
-            stateArray[i][j] = 1;
+    for (j = 0; j < 400; j++) {
 
+        let a, b, c;
+
+        if(j == 0) {
+            a = 0
+            b = stateArray[i - 1][j]
+            c = stateArray[i - 1][j + 1]
+        }
+        else if(j == 1) {
+            a = stateArray[i - 1][j - 1]
+            b = stateArray[i - 1][j]
+            c = 0
+        }
+        else {
+            a = stateArray[i - 1][j - 1]
+            b = stateArray[i - 1][j]
+            c = stateArray[i - 1][j + 1]
+        }
+
+        if (a == 0 && b == 1 && c == 0) {
+            changeStateArray(context, i, j)
         }
         if (a == 1 && b == 1 && c == 1) {
-            context.fillRect(j - 10, i + 9, 10, 10);
-            stateArray[i][j] = 1;
-
+            changeStateArray(context, i, j)
         }
         if (a == 1 && b == 0 && c == 0) {
-            context.fillRect(j - 10, i + 9, 10, 10);
-            stateArray[i][j] = 1;
-
+            changeStateArray(context, i, j)
         };
         if (a == 0 && b == 0 && c == 1) {
-            context.fillRect(j - 10, i + 9, 10, 10);
-            stateArray[i][j] = 1;
-
+            changeStateArray(context, i, j)
         };
-
     }
-
 }
 
 function getDateTime() {
