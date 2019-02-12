@@ -48,12 +48,12 @@ function draw_grid(rctx, rminor, rmajor, rstroke, rfill) {
 }
 
 function initializeStateArray() {
-    for (i = 0; i <= 400; i++) {
-        stateArray[i] = new Array(400);
+    for (i = 0; i <= 40; i++) {
+        stateArray[i] = new Array(40);
     }
 
-    for (i = 0; i <= 400; i++) {
-        for (j = 0; j <= 400; j++) {
+    for (i = 0; i <= 40; i++) {
+        for (j = 0; j <= 40; j++) {
             stateArray[i][j] = 0;
         }
     }
@@ -62,35 +62,35 @@ function initializeStateArray() {
 function changeStateArray(context, i, j) {
     stateArray[i][j] = 1;
     context.fillStyle = 'black';
-    context.fillRect(j - 10, i, 10, 10);
+    context.fillRect(j + 10 * j, i + 10 * i, 10, 10);
 }
 
 function nextGeneration() {
-    for (i = 1; i < 398; i++) {
+    for (i = 1; i < 40; i++) {
         generate(i);
     }
 }
 
 function generate(i) {
-    for (j = 1; j < 399; j++) {
+    for (j = 1; j < 40; j++) {
         let a = stateArray[i - 1][j - 1], b = stateArray[i - 1][j], c = stateArray[i - 1][j + 1];
         if (a == 0 && b == 1 && c == 0) {
-            context.fillRect(j - 10, i + 9, 10, 10);
+            context.fillRect(j + 10 * j, i + 10 * i, 10, 10);
             stateArray[i][j] = 1;
 
         }
         if (a == 1 && b == 1 && c == 1) {
-            context.fillRect(j - 10, i + 9, 10, 10);
+            context.fillRect(j + 10 * j, i + 10 * i, 10, 10);
             stateArray[i][j] = 1;
 
         }
         if (a == 1 && b == 0 && c == 0) {
-            context.fillRect(j - 10, i + 9, 10, 10);
+            context.fillRect(j + 10 * j, i + 10 * i, 10, 10);
             stateArray[i][j] = 1;
 
         };
         if (a == 0 && b == 0 && c == 1) {
-            context.fillRect(j - 10, i + 9, 10, 10);
+            context.fillRect(j + 10 * j, i + 10 * i, 10, 10);
             stateArray[i][j] = 1;
 
         };
