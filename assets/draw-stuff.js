@@ -64,7 +64,7 @@ function changeStateArray(context, i, j) {
     context.fillStyle = 'black';
     setTimeout(() => {
         context.fillRect(j + 10 * j, i + 10 * i, 10, 10)
-    }, 1000)
+    }, 100)
 }
 
 function nextGeneration() {
@@ -77,24 +77,16 @@ function generate(i) {
     for (j = 1; j < 40; j++) {
         let a = stateArray[i - 1][j - 1], b = stateArray[i - 1][j], c = stateArray[i - 1][j + 1];
         if (a == 0 && b == 1 && c == 0) {
-            context.fillRect(j + 10 * j, i + 10 * i, 10, 10);
-            stateArray[i][j] = 1;
-
+            changeStateArray(context, i, j);
         }
         if (a == 1 && b == 1 && c == 1) {
-            context.fillRect(j + 10 * j, i + 10 * i, 10, 10);
-            stateArray[i][j] = 1;
-
+            changeStateArray(context, i, j);
         }
         if (a == 1 && b == 0 && c == 0) {
-            context.fillRect(j + 10 * j, i + 10 * i, 10, 10);
-            stateArray[i][j] = 1;
-
+            changeStateArray(context, i, j);
         };
         if (a == 0 && b == 0 && c == 1) {
-            context.fillRect(j + 10 * j, i + 10 * i, 10, 10);
-            stateArray[i][j] = 1;
-
+            changeStateArray(context, i, j);
         };
 
     }
