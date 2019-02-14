@@ -48,12 +48,12 @@ function draw_grid(rctx, rminor, rmajor, rstroke, rfill) {
 }
 
 function initializeStateArray() {
-    for (i = 0; i <= 40; i++) {
+    for (i = 0; i < 40; i++) {
         stateArray[i] = new Array(40);
     }
 
-    for (i = 0; i <= 40; i++) {
-        for (j = 0; j <= 40; j++) {
+    for (i = 0; i < 40; i++) {
+        for (j = 0; j < 40; j++) {
             stateArray[i][j] = 0;
         }
     }
@@ -61,9 +61,10 @@ function initializeStateArray() {
 
 function changeStateArray(context, i, j) {
     stateArray[i][j] = 1;
+    console.log(i + " " + j)
     context.fillStyle = 'black';
     setTimeout(() => {
-        context.fillRect(j + 10 * j, i + 10 * i, 10, 10)
+        context.fillRect(10 * j, 10 * i, 10, 10)
     }, 1000)
 }
 
@@ -74,31 +75,46 @@ function nextGeneration() {
 }
 
 function generate(i) {
-    for (j = 1; j < 40; j++) {
-        let a = stateArray[i - 1][j - 1], b = stateArray[i - 1][j], c = stateArray[i - 1][j + 1];
-        if (a == 0 && b == 1 && c == 0) {
-            context.fillRect(j + 10 * j, i + 10 * i, 10, 10);
-            stateArray[i][j] = 1;
 
+
+    for (j = 0; j < 40; j++) {
+        let a = 0, b = 0, c = 0;
+        if (j == 0) {
+            b = stateArray[i - 1][j];
+        } else if (j == 39) {
+            b = stateArray[i - 1][j];
+        } else {
+            a = stateArray[i - 1][j - 1];
+            b = stateArray[i - 1][j];
+            c = stateArray[i - 1][j + 1];
         }
-        if (a == 1 && b == 1 && c == 1) {
-            context.fillRect(j + 10 * j, i + 10 * i, 10, 10);
-            stateArray[i][j] = 1;
 
+        if (checkRules(a, b, c) == 1) {
+            context.fillRect(10 * j, 10 * i, 10, 10);
+            stateArray[i][j] = 1;
         }
-        if (a == 1 && b == 0 && c == 0) {
-            context.fillRect(j + 10 * j, i + 10 * i, 10, 10);
-            stateArray[i][j] = 1;
-
-        };
-        if (a == 0 && b == 0 && c == 1) {
-            context.fillRect(j + 10 * j, i + 10 * i, 10, 10);
-            stateArray[i][j] = 1;
-
-        };
 
     }
 
+
+}
+
+function checkRules(a, b, c) {
+    if (a == 0 && b == 1 && c == 0) {
+        return 1;
+    }
+    if (a == 1 && b == 1 && c == 1) {
+        return 1;
+
+    }
+    if (a == 1 && b == 0 && c == 0) {
+        return 1;
+
+    };
+    if (a == 0 && b == 0 && c == 1) {
+        return 1;
+    };
+    return 0;
 }
 
 function getDateTime() {
