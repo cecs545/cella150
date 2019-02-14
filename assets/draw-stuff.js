@@ -72,6 +72,8 @@ function nextGeneration() {
     for (i = 1; i < 40; i++) {
         generate(i);
     }
+
+    console.log(stateArray);
 }
 
 function generate(i) {
@@ -95,6 +97,7 @@ function generate(i) {
         }
 
     }
+
 
 
 }
@@ -144,55 +147,3 @@ function getDateTime() {
     return dateTime;
 }
 
-// // ========== fill the grid using Wolfram-150 cellular automaton rule ==========
-// function cella_150(rctx, x_number, y_number, fillcolor) {
-//     // initialize the seed to black
-//     rctx.fillStyle = fillcolor;
-//     rctx.fillRect(x_number, y_number, 10, 10);
-
-//     let width = rctx.canvas.width;
-//     let height = rctx.canvas.height;
-
-//     let cells = Array(400);
-//     for (var i = 0; i < 400; i += 1) {
-//         cells[i] = 0;
-//     }
-//     cells[400] = 1;
-
-//     // for (var iy = 10; iy < height; iy += 10) {
-//     //     for (var ix = 0; ix < width; ix += 10) {
-//     //         var next_state = check_neighbors(ix, cells);
-//     //         if (next_state == 1) {
-//     //             rctx.fillStyle = 'black';
-//     //             rctx.fillRect(ix, iy, 10, 10);
-//     //         }
-//     //         else {
-//     //             //rctx.fillStyle = 'white';
-//     //             //rctx.fillRect(ix, iy, 10, 10);
-//     //         }
-//     //     }
-//     // }
-// }
-
-
-// // return the apt rule from the ruleset after checking the neighbors
-// function check_neighbors(ix, cells) {
-//     // treat non-existential neighbors as in the off state
-
-//     // if we are looking at (100, 50), then we need to check the 10th cell
-//     var current = ix / 10;
-//     var lstate = cells[current - 1];
-//     var cstate = cells[current];
-//     var rstate = cells[current + 1];
-//     console.log(current, lstate, cstate, rstate);
-//     if (lstate == 1 && cstate == 1 && rstate == 1) return ruleset[0];
-//     if (lstate == 1 && cstate == 1 && rstate == 0) return ruleset[1];
-//     if (lstate == 1 && cstate == 0 && rstate == 1) return ruleset[2];
-//     if (lstate == 1 && cstate == 0 && rstate == 0) return ruleset[3];
-//     if (lstate == 0 && cstate == 1 && rstate == 1) return ruleset[4];
-//     if (lstate == 0 && cstate == 1 && rstate == 0) return ruleset[5];
-//     if (lstate == 0 && cstate == 0 && rstate == 1) return ruleset[6];
-//     if (lstate == 0 && cstate == 0 && rstate == 0) return ruleset[7];
-
-//     return 0;
-// }
