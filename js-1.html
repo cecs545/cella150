@@ -12,19 +12,16 @@
   </h4>
 
   <canvas id="grid" width="400" height="400"></canvas>
-
 </body>
+
 <script src="assets/draw-stuff.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script>
   // after "Introducing JavaScript Game Development" by Stuart.
 
   // =====================================================  draw_title ====
   // Draw filled rect.
-
-  $('document').ready(function () {
-    let timeHolder = document.getElementById('time').innerHTML = getDateTime();
-  });
   
   function draw_title(context) {
     context.save();
@@ -48,19 +45,20 @@
     nextGeneration();
   }, 2000);
 
+// =====================================================  date_and_time ====
   (function () {
     function checkLength(i) {
         return (i.toString().length == 1) ? "0" + i : i;
     }
     function getDateTime() {
         var now = new Date(),
-            year = now.getFullYear();
-            month = now.getMonth()+1;
-            day = checkLength(now.getDate());
+            year = now.getFullYear(),
+            month = checkLength(now.getMonth()+1),
+            day = checkLength(now.getDate()),
             hour = checkLength(now.getHours()),
             minute = checkLength(now.getMinutes()),
             second = checkLength(now.getSeconds());
-        document.getElementById('time').innerHTML = year + '/' + month + '/' + day + ' ' + hour + ":" + minute + ":" + second;
+        document.getElementById('time').innerHTML = 'Timestamp : ' + year + '-' + month + '-' + day + ' ' + hour + ":" + minute + ":" + second;
         t = setTimeout(function () {
             getDateTime()
         }, 500);
