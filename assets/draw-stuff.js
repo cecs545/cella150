@@ -72,18 +72,17 @@ function nextGeneration() {
     for (i = 1; i < 40; i++) {
         generate(i);
     }
-
     console.log(stateArray);
 }
 
 function generate(i) {
-
-
     for (j = 0; j < 40; j++) {
         let a = 0, b = 0, c = 0;
         if (j == 0) {
             b = stateArray[i - 1][j];
+            c = stateArray[i - 1][j + 1];
         } else if (j == 39) {
+            a = stateArray[i - 1][j - 1];
             b = stateArray[i - 1][j];
         } else {
             a = stateArray[i - 1][j - 1];
@@ -95,11 +94,7 @@ function generate(i) {
             context.fillRect(10 * j, 10 * i, 10, 10);
             stateArray[i][j] = 1;
         }
-
     }
-
-
-
 }
 
 function checkRules(a, b, c) {
