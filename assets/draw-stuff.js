@@ -72,13 +72,10 @@ function nextGeneration() {
     for (i = 1; i < 40; i++) {
         generate(i);
     }
-
     console.log(stateArray);
 }
 
 function generate(i) {
-
-
     for (j = 0; j < 40; j++) {
         let a = 0, b = 0, c = 0;
         if (j == 0) {
@@ -97,11 +94,7 @@ function generate(i) {
             context.fillRect(10 * j, 10 * i, 10, 10);
             stateArray[i][j] = 1;
         }
-
     }
-
-
-
 }
 
 function checkRules(a, b, c) {
@@ -122,30 +115,4 @@ function checkRules(a, b, c) {
     return 0;
 }
 
-function getDateTime() {
-    var now = new Date();
-    var year = now.getFullYear();
-    var month = now.getMonth() + 1;
-    var day = now.getDate();
-    var hour = now.getHours();
-    var minute = now.getMinutes();
-    var second = now.getSeconds();
-    if (month.toString().length == 1) {
-        month = '0' + month;
-    }
-    if (day.toString().length == 1) {
-        day = '0' + day;
-    }
-    if (hour.toString().length == 1) {
-        hour = '0' + hour;
-    }
-    if (minute.toString().length == 1) {
-        minute = '0' + minute;
-    }
-    if (second.toString().length == 1) {
-        second = '0' + second;
-    }
-    var dateTime = year + '/' + month + '/' + day + ' ' + hour + ':' + minute + ':' + second;
-    return dateTime;
-}
 
