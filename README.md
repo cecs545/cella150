@@ -29,6 +29,6 @@ Contents:
   
 External Requirements - A web browser
 
-Setup and Installation - Unzip file and open js-1.html in browser
+Setup and Installation - Clone the repo and open js-1.html in browser
 
 Features - Rule 150 Automaton.
